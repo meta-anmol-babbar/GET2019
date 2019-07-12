@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class Cart {
 	/**
-	 * List items is for list of available items
-	 * List bag is for selected items from the list of available items
+	 * List items is for list of available items List bag is for selected items
+	 * from the list of available items
 	 * 
 	 */
 	private static Scanner sc = new Scanner(System.in);
 	static ArrayList<Product> items = new ArrayList<Product>();
 	static ArrayList<Product> bag = new ArrayList<Product>();
-	
+
 	static Product nike = new Product("nike", 2500);
 	static Product puma = new Product("puma", 1500);
 	static Product bata = new Product("bata", 3500);
@@ -55,16 +55,15 @@ public class Cart {
 	}
 
 	private static void generateBill() {
-		// TODO Auto-generated method stub
 		System.out.println("Invoice");
 		System.out.println("*******");
 		System.out.println("Name\t\t\tQuantity\t\tPrice Per Piece\t\tCost");
 		double total = 0;
 		for (Product value : bag) {
-			total = total + (value.pquantity * value.pprice);
-			System.out.println(value.pname + "\t\t\t" + value.pquantity
-					+ "\t\t\t" + value.pprice + "\t\t\t" + value.pprice
-					* value.pquantity);
+			total = total + (value.productQuantity * value.productPrice);
+			System.out.println(value.productName + "\t\t\t"
+					+ value.productQuantity + "\t\t\t" + value.productPrice
+					+ "\t\t\t" + value.productPrice * value.productQuantity);
 		}
 		System.out.println("*****************************************");
 		System.out.println("\t\tTotal : " + total);
@@ -72,70 +71,73 @@ public class Cart {
 	}
 
 	private static void viewBag() {
-		// TODO Auto-generated method stub
 		System.out.println(" Products In Bag");
 		System.out.println("*****************");
-		System.out.println("Name\t\t\tQuantity\t\t\tPrice");
+		System.out.println("Name\t\t\tQuantity\t\tPrice");
 		for (Product value : bag) {
-			System.out.println(value.pname + "\t\t\t" + value.pquantity+ "\t\t" +value.pprice);
+			System.out.println(value.productName + "\t\t\t"
+					+ value.productQuantity + "\t\t\t" + value.productPrice);
 		}
 
 	}
 
 	private static void updateBag() {
-		// TODO Auto-generated method stub
 		System.out.println("Enter Product name");
 		String bagItem = sc.next();
-		if (bagItem.equals("nike") && bag.contains(nike)) {
+		if ("nike".equalsIgnoreCase(bagItem) && bag.contains(nike)) {
 			System.out.println("Enter Quntity");
 			int qty = sc.nextInt();
 			if (qty <= 0) {
 				bag.remove(nike);
 			} else
-				nike.pquantity = qty;
-		} else if (bagItem.equals("puma") && bag.contains(puma)) {
+				nike.productQuantity = qty;
+		} else if ("puma".equalsIgnoreCase(bagItem) && bag.contains(puma)) {
 			System.out.println("Enter Quntity");
 			int qty = sc.nextInt();
 			if (qty <= 0) {
 				bag.remove(puma);
 			} else
-				puma.pquantity = qty;
-		} else if (bagItem.equals("bata") && bag.contains(bata)) {
+				puma.productQuantity = qty;
+		} else if ("bata".equalsIgnoreCase(bagItem) && bag.contains(bata)) {
 			System.out.println("Enter Quntity");
 			int qty = sc.nextInt();
 			if (qty <= 0) {
 				bag.remove(bata);
 			} else
-				bata.pquantity = qty;
-		} else if (bagItem.equals("asics") && bag.contains(asics)) {
+				bata.productQuantity = qty;
+		} else if ("asics".equalsIgnoreCase(bagItem) && bag.contains(asics)) {
 			System.out.println("Enter Quntity");
 			int qty = sc.nextInt();
 			if (qty <= 0) {
 				bag.remove(asics);
 			} else
-				asics.pquantity = qty;
-		}
-		if (bagItem.equals("adidas") && bag.contains(adidas)) {
+				asics.productQuantity = qty;
+		} else if ("adidas".equalsIgnoreCase(bagItem) && bag.contains(adidas)) {
 			System.out.println("Enter Quntity");
 			int qty = sc.nextInt();
 			if (qty <= 0) {
 				bag.remove(adidas);
 			} else
-				adidas.pquantity = qty;
+				adidas.productQuantity = qty;
 		} else
 			System.out.println("Item not available in bag");
 
 	}
-/**
- * addToBag display a list of items
- * item to be added to bag are selected using corresponding index
- * @param subchoice is used for selecting index of item
- * @param qty gets the value of quantity of the item and should be grater then or equal to 1
- * 
- */
+
+	/**
+	 * addToBag display a list of items item to be added to bag are selected
+	 * using corresponding index
+	 * 
+	 * @param subchoice
+	 *            is used for selecting index of item
+	 * @param qty
+	 *            gets the value of quantity of the item and should be grater
+	 *            then or equal to 1
+	 * 
+	 */
 	private static void addToBag() {
-		// TODO Auto-generated method stub
-		System.out.println("List of Items \n 1: Nike\n 2: Puma\n 3: bata\n 4: Asics\n 5: Adidas ");
+		System.out
+				.println("List of Items \n 1: Nike\n 2: Puma\n 3: bata\n 4: Asics\n 5: Adidas ");
 		int subchoice = sc.nextInt();
 		if (subchoice == 1) {
 			if (bag.contains(nike)) {
@@ -144,7 +146,7 @@ public class Cart {
 				System.out.println("Enter Quntity");
 				int qty = sc.nextInt();
 				if (qty >= 0) {
-					nike.pquantity = qty;
+					nike.productQuantity = qty;
 					bag.add(nike);
 				}
 			}
@@ -159,7 +161,7 @@ public class Cart {
 				int qty = sc.nextInt();
 				if (qty >= 0) {
 					bag.add(puma);
-					puma.pquantity = qty;
+					puma.productQuantity = qty;
 				}
 			}
 
@@ -172,7 +174,7 @@ public class Cart {
 				int qty = sc.nextInt();
 				if (qty >= 0) {
 					bag.add(bata);
-					bata.pquantity = qty;
+					bata.productQuantity = qty;
 				}
 			}
 
@@ -185,7 +187,7 @@ public class Cart {
 				int qty = sc.nextInt();
 				if (qty >= 0) {
 					bag.add(asics);
-					asics.pquantity = qty;
+					asics.productQuantity = qty;
 				}
 			}
 
@@ -198,7 +200,7 @@ public class Cart {
 				int qty = sc.nextInt();
 				if (qty >= 0) {
 					bag.add(adidas);
-					adidas.pquantity = qty;
+					adidas.productQuantity = qty;
 				}
 			}
 		}
