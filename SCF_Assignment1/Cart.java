@@ -7,7 +7,7 @@ public class Cart {
 	/**
 	 * List items is for list of available items List bag is for selected items
 	 * from the list of available items
-	 * 
+	 * hello the party is overr
 	 */
 	private static Scanner sc = new Scanner(System.in);
 	static ArrayList<Product> items = new ArrayList<Product>();
