@@ -1,17 +1,16 @@
 package SCF_Assignment1;
 
+
 public class Product {
-		//private int pid;
-		public String pname;
-		public double pprice;
-		public int pquantity;
-		
-		public Product(String name, int price) {
-			// TODO Auto-generated constructor stub
-			pname=name;
-			pprice=price;
-			pquantity=0;
-		}
+
+	public String productName;
+	public double productPrice;
+	public int productQuantity;
+
+	public Product(String name, int price) {
+
+		productName = name;
+		productPrice = price;
+		productQuantity = 0;
 	}
-
-
+}
