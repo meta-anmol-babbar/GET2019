@@ -8,17 +8,20 @@ public class JobScheduler {
 		Scanner sc = new Scanner(System.in);
 		int n;
 		System.out.print("Enter number of processes");
-		n = sc.nextInt();
+		do{
+			n = sc.nextInt();
+			if(n<=0)
+			System.out.println("Enter valid value");
+		}while(n<=0);
 		int[][] input = new int[n][2];
 		int complitionTimeOfProcess[] = new int[n];
 		int waitingTimeOfProcess[] = new int[n];
 		int turnAroundTimeOfProcess[] = new int[n];
 		int avgWaitingTime = 0;
 		int maxWaitingTime = 0;
+		System.out.println("Enter burst time of process and arrival time for "+n+" processes");	
 		for (int i = 0; i < n; i++) {
-			System.out.println("Enter arival time of process p" + (i + 1));
 			input[i][0] = sc.nextInt();
-			System.out.println("Enter burst time of process p" + i + 1);
 			input[i][1] = sc.nextInt();
 		}
 
@@ -28,24 +31,14 @@ public class JobScheduler {
 				complitionTimeOfProcess, n);
 		avgWaitingTime = averageWaitingTime(waitingTimeOfProcess);
 		maxWaitingTime = maxWaitingTime(waitingTimeOfProcess);
-		print(complitionTimeOfProcess, "Compliation Time Of Processes");
-		print(waitingTimeOfProcess, "Waiting Time Of Processes");
-		print(turnAroundTimeOfProcess, "Turn Around Time Of Processes");
-		print(avgWaitingTime, "Average Waiting Time Of Processes");
-		print(maxWaitingTime, "Maximum Waiting Time Of Processes");
+		System.out.println("Process\t\t Arrival Time\t BurstTime\t Complition Time\t Waiting Time\t Turn Around Time");
+		for (int i = 0; i < n; i++) {
+			System.out.println((i+1) + "\t\t " + input[i][0] + "\t\t " + input[i][1] + "\t\t " +complitionTimeOfProcess[i]+ "\t\t\t "+ waitingTimeOfProcess[i] + "\t\t " + turnAroundTimeOfProcess[i]);
+			}
+		System.out.println("Average Waiting Time Of Processes : "+avgWaitingTime );
+		System.out.println("Maximum Waiting Time Of Processes : "+maxWaitingTime );
 		sc.close();
 
-	}
-
-	private static void print(int integerValue, String initials) {
-		System.out.println(initials + " " + integerValue);
-	}
-
-	private static void print(int[] arrayPrint, String initials) {
-		int n = arrayPrint.length;
-		for (int i = 0; i < n; i++) {
-			System.out.println(initials + " " + i + " " + arrayPrint[i]);
-		}
 	}
 
 	private static int maxWaitingTime(int[] waitingTimeOfProcess) {
