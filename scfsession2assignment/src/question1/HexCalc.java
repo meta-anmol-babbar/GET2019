@@ -291,7 +291,7 @@ public class HexCalc {
 
 	private static String decimalToHex(long decimalVal) {
 		char tempVal;
-		String returnValue;
+		String returnValue = null;
 		long number = decimalVal;
 		StringBuffer hexVal = new StringBuffer();
 		int asciiNumStart = 48;
@@ -299,7 +299,9 @@ public class HexCalc {
 		long result = 0, remainder = 0;
 		if (number == 0) {
 			returnValue = "0";
-		} else if (number < 0) {
+		}
+		else {
+			
 			number = Math.abs(number);
 			do {
 				result = number / base;
@@ -314,25 +316,11 @@ public class HexCalc {
 				}
 
 			} while (result != 0);
-
+			if(decimalVal<0)
+				hexVal.append("-");
 			returnValue = hexVal.reverse().toString();
 
-		} else {
-			do {
-				result = number / base;
-				remainder = number % base;
-				number = result;
-				if (remainder >= 0 && remainder <= 9) {
-					tempVal = (char) (remainder + asciiNumStart);
-					hexVal.append(tempVal);
-				} else {
-					tempVal = (char) (remainder - 10 + asciiCharStart);
-					hexVal.append(tempVal);
-				}
-
-			} while (result != 0);
-			returnValue = hexVal.reverse().toString();
-		}
+		} 
 		return returnValue;
 	}
 
