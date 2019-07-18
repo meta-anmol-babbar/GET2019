@@ -34,8 +34,8 @@ public class CountClumpsTest {
 		return Arrays.asList(new Object[][] {
 				{ 2, new int[] {1,2,2,3,4,4}},
 				{ 2, new int[] { 1, 1, 2,1,1} },
-				{ 1, new int[] { 1, 1, 1,1 } },
-				{2 , new int[]{1,2,2,1,4,4}}       //negative case
+				{ 1, new int[] { 1, 1,1,1 } },
+				{2 , new int[]{1,2,2,1,4,4}}       	
 		});
 	}
 

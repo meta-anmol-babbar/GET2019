@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 @RunWith(Parameterized.class)
 /*
- * test class for countClumps method
+ * test class for fixXY method
  */
 public class FixXYTest {
 	
@@ -39,9 +39,7 @@ public class FixXYTest {
 				{new int[] {9,4,5,4,5,9}, new int[] {5,4,9,4,9,5},4,5},
 				{new int[] {1,4,5,1}, new int[] {1,4,1,5},4,5},
 				{new int[] {1,4,5,1,1,4,5}, new int[] {1,4,1,5,5,4,1},4,5},
-				//{new int[] {1,5,4,1,1,4,5}, new int[] {1,4,1,5,5,4,1},4,5},    //negative case
-				//{new int[] {1,4,5,4,4,1,1}, new int[] {1,4,4,5,5,1,1},4,5},    //throw two adjacent X error
-				//{new int[] {1,4,5,4,1,4,5}, new int[] {5,4,1,5,4,5,4},4,5},    //X at last position of array
+				
 		});
 	}
 
@@ -49,5 +47,6 @@ public class FixXYTest {
 	public void fixXYTest() {
 		assertArrayEquals(expectedResult, arrOperations.fixXY(inputArray,x,y));    //check if actual is equal to expected
 	}
+	
 
 }

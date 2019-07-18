@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 @RunWith(Parameterized.class)
 /*
- * test class for countClumps method
+ * test class for split method
  */
 public class SplitTest {
 
@@ -36,8 +36,7 @@ public class SplitTest {
 				{ -1, new int[] { 2,1,1,2,1} },
 				{ 1, new int[] { 10,10 } },
 			//	{ 4, new int[] { 10,10,2,2 } },        //negative case
-			//	{ 2, new int[] {  } },                 //throw empty array error
-		});
+				});
 	}
 
 	@Test

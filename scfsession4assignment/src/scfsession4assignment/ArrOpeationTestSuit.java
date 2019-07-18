@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
   MaxMirrorTest.class,
   CountClumpsTest.class,
   FixXYTest.class,
-  SplitTest.class
+  SplitTest.class,
+  NegitiveTestCases.class
 })
 
 public class ArrOpeationTestSuit {
