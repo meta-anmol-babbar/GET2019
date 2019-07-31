@@ -43,7 +43,7 @@ public class LinkedList {
 		for (int i = 0; i < dataArray.length; i++) {
 			insert(dataArray[i]);
 		}
-		this.printList();
+		// this.printList();
 	}
 
 	/**
@@ -97,6 +97,8 @@ public class LinkedList {
 	 */
 	protected void rotateSubLinkedList(int startingIndex, int endingIndex,
 			int rotationTimes) {
+		if ((endingIndex < startingIndex) || (startingIndex < 1))
+			throw new AssertionError("Invalid input");
 
 		System.out.println("\nrotated linked list");
 		Node subListStartPreviousNodeNext = null, subListEndPrev = null;
@@ -128,7 +130,7 @@ public class LinkedList {
 			}
 			rotationTimes--;
 		}
-		this.printList();
+		// this.printList();
 	}
 
 	/**

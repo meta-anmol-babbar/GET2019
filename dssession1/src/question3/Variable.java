@@ -7,7 +7,7 @@ package question3;
 public class Variable {
 
 	private char varibleName;
-	private int variablePower;
+	int power;
 
 	/**
 	 * Constructor to initialize the data members of the class
@@ -18,7 +18,7 @@ public class Variable {
 	 *            is the variable power
 	 */
 	Variable(char variableName, int variablePower) {
-		this.variablePower = variablePower;
+		this.power = variablePower;
 		this.varibleName = variableName;
 	}
 
@@ -37,7 +37,7 @@ public class Variable {
 	 * @return power of the variable
 	 */
 	public int getVariablePower() {
-		return variablePower;
+		return power;
 	}
 
 }
