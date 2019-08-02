@@ -17,27 +17,16 @@ import jxl.read.biff.BiffException;
 public class FileInputs {
 
 	Map<String, Integer> programList = new HashMap<String, Integer>();
-	static Queue<StudentList> students = new LinkedList<>();
-	
-	
-	public Map<String, Integer> getProgramList() {
-		return programList;
-	}
+	Queue<StudentList> students = new LinkedList<>();
 
-	public void setProgramList(Map<String, Integer> programList) {
-		this.programList = programList;
-	}
-
-	public static Queue<StudentList> getStudents() {
-		return students;
-	}
-
-	public static void setStudents(Queue<StudentList> students) {
-		FileInputs.students = students;
-	}
-
-	public void readProgramFile() throws IOException, BiffException {
-		String filePath = "PROGRAMS.xls";
+	/**
+	 * readProgramFile reads a Excel file that is predefined by the user
+	 * 
+	 * @throws IOException
+	 * @throws BiffException
+	 */
+	public void readProgramFile(String programFile) throws IOException, BiffException {
+		String filePath = programFile;
 		FileInputStream fs = new FileInputStream(filePath);
 		Workbook wb = Workbook.getWorkbook(fs);
 
@@ -45,19 +34,26 @@ public class FileInputs {
 
 		// To get the number of rows present in sheet
 		int totalNoOfRows = sheet.getRows();
-
+		if (totalNoOfRows == 0)
+			throw new AssertionError("Empty File found");
 		for (int row = 0; row < totalNoOfRows; row++) {
-			Cell cell1=sheet.getCell(0,row);
-			Cell cell2=sheet.getCell(1,row);
-			programList.put(cell1.getContents().toString(), Integer.parseInt(cell2.getContents().toString()));
+			Cell cell1 = sheet.getCell(0, row);
+			Cell cell2 = sheet.getCell(1, row);
+			programList.put(cell1.getContents().toString(),
+					Integer.parseInt(cell2.getContents().toString()));
 
 		}
-			//System.out.println(programList.values());
-		}
-	
-	public void readStudentsFile() throws IOException, BiffException {
-		
-		String filePath = "STUDENTS.xls";
+	}
+
+	/**
+	 * readStudentsFile reads a Excel file that is predefined by the user
+	 * 
+	 * @throws IOException
+	 * @throws BiffException
+	 */
+	public void readStudentsFile(String studentFile) throws IOException, BiffException {
+
+		String filePath = studentFile;
 		FileInputStream fs = new FileInputStream(filePath);
 		Workbook wb = Workbook.getWorkbook(fs);
 
@@ -65,34 +61,34 @@ public class FileInputs {
 
 		// To get the number of rows present in sheet
 		int totalNoOfRows = sheet.getRows();
+		if (totalNoOfRows == 0)
+			throw new AssertionError("Empty File found");
 
 		for (int row = 0; row < totalNoOfRows; row++) {
-			Cell cell1=sheet.getCell(0,row);
+			Cell cell1 = sheet.getCell(0, row);
 			List<String> pref = new ArrayList<String>(5);
-			for(int col=0;col<5;col++) {
-			Cell cell2=sheet.getCell(col+1,row);
-			
-			pref.add(cell2.getContents().toString());
-			
-					}
-				this.students.add(new StudentList(cell1.getContents().toString(), pref));
-				//pref.clear();
-		}
-		
-		
-		}
-	void print(){
-	//	System.out.println(students.size());
-		//for(StudentList stu:students){	
-			//System.out.println(stu.stuName);
-			//for(int i=0; i< stu.preference.size();i++){
-				//System.out.print(stu.preference.size());
-				//System.out.print(" "+stu.preference.get(i)+" ");}
-		//	System.out.println();
-			
+			for (int col = 0; col < 5; col++) {
+				Cell cell2 = sheet.getCell(col + 1, row);
 
-	//}
+				pref.add(cell2.getContents().toString());
+
+			}
+			this.students.add(new StudentList(cell1.getContents().toString(),
+					pref));
+		}
+
+	}
+
+	void print() {
+		System.out.println(students.size());
+		for (StudentList stu : students) {
+			System.out.println(stu.stuName);
+			for (int i = 0; i < stu.preference.size(); i++) {
+				System.out.print(stu.preference.size());
+				System.out.print(" " + stu.preference.get(i) + " ");
+			}
+			System.out.println();
+
+		}
 	}
 }
-
-
