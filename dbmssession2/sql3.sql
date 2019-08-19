@@ -1,46 +1,86 @@
--- query 1
-select shopperorder.order_id,shopperorder.date,sum(products.product_price * cart_list.product_qty) as order_total 
-from shopperorder,cart_list,products  
-where shopperorder.cart_id = cart_list.cart_id and cart_list.product_id=products.product_id  
-group by order_id
-limit 50;
+-- 3.a Display Recent 50 Orders placed (Id, Order Date, Order Total).
+SELECT 
+    shopperorder.order_id,
+    shopperorder.date,
+    SUM(products.product_price * cart_list.product_qty) AS order_total
+FROM
+    shopperorder,
+    cart_list,
+    products
+WHERE
+    shopperorder.cart_id = cart_list.cart_id
+        AND cart_list.product_id = products.product_id
+GROUP BY order_id
+LIMIT 50;
 
--- query 2
-select shopperorder.order_id,shopperorder.date,sum(products.product_price * cart_list.product_qty) as order_total   
-from shopperorder,cart_list,products  
-where shopperorder.cart_id = cart_list.cart_id and cart_list.product_id=products.product_id  
-group by order_id 
-order By order_total desc
-limit 10;
+-- 3.b Display 10 most expensive Orders.
 
--- query 3
-select order_id,date from shopperorder where status like "not shipped" and  `date`  <=  NOW() - INTERVAL 10 DAY;
+SELECT 
+    shopperorder.order_id,
+    shopperorder.date,
+    SUM(products.product_price * cart_list.product_qty) AS order_total
+FROM
+    shopperorder,
+    cart_list,
+    products
+WHERE
+    shopperorder.cart_id = cart_list.cart_id
+        AND cart_list.product_id = products.product_id
+GROUP BY order_id
+ORDER BY order_total DESC
+LIMIT 10;
 
--- query 4
-SELECT user_name
-  FROM user where user_id not in (select distinct user_id
-                        from cart_list
-                        left join shopperorder 
-                        on cart_list.cart_id=shopperorder.cart_id
-                        where shopperorder.date BETWEEN NOW() - INTERVAL 30 DAY AND NOW());
+-- 3.c Display all the Orders which are placed more than 10 days old 
+-- and one or more items from those orders are still not shipped.
+SELECT 
+    order_id, date
+FROM
+    shopperorder
+WHERE
+    status LIKE 'not shipped'
+        AND `date` <= NOW() - INTERVAL 10 DAY;
+
+-- 3.d Display list of shoppers which haven't ordered anything since last month.
+SELECT 
+    user_name
+FROM
+    user
+WHERE
+    user_id NOT IN (SELECT DISTINCT
+            user_id
+        FROM
+            cart_list
+                LEFT JOIN
+            shopperorder ON cart_list.cart_id = shopperorder.cart_id
+        WHERE
+            shopperorder.date BETWEEN NOW() - INTERVAL 30 DAY AND NOW());
 
                         
--- query 5
-SELECT user_name
-  FROM user where user_id in (select distinct user_id
-                        from cart_list
-                        left join shopperorder 
-                        on cart_list.cart_id=shopperorder.cart_id
-                        where shopperorder.date BETWEEN NOW() - INTERVAL 15 DAY AND NOW());
+-- 3.e Display list of shopper along with orders placed by them in last 15 days. 
+SELECT 
+    user_name
+FROM
+    user
+WHERE
+    user_id IN (SELECT DISTINCT
+            user_id
+        FROM
+            cart_list
+                LEFT JOIN
+            shopperorder ON cart_list.cart_id = shopperorder.cart_id
+        WHERE
+            shopperorder.date BETWEEN NOW() - INTERVAL 15 DAY AND NOW());
                         
--- queery 6 
 
--- query 7
-
-select user_id,product_name,shopperorder.date,sum(products.product_price * cart_list.product_qty) as order_total 
-from (cart_list
-inner join shopperorder 
-on cart_list.cart_id=shopperorder.cart_id 
-inner join products 
-on cart_list.product_id=products.product_id) group by order_id
-having order_total BETWEEN 250 and 500;
+-- 3.f Display list of order items along with order placed date which fall between Rs 20 to Rs 50 price.
+SELECT 
+    user_id,
+    product_name,
+    shopperorder.date,
+    SUM(products.product_price * cart_list.product_qty) AS order_total
+FROM
+    (cart_list
+    INNER JOIN shopperorder ON cart_list.cart_id = shopperorder.cart_id
+    INNER JOIN products ON cart_list.product_id = products.product_id)
+GROUP BY order_id
+HAVING order_total BETWEEN 250 AND 500;
