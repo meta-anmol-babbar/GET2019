@@ -24,31 +24,20 @@ drop function max_order_month;
 
 -- 1.2 Create a function to return month in a year having maximum orders. Year will be input parameter.
 
+DELIMITER $$
+CREATE FUNCTION Max_Order_Month(year INT)
+   RETURNS varchar(10)
+   DETERMINISTIC
+       BEGIN
+           DECLARE month_of_max_orders varchar(10);
+           SELECT MONTHNAME(date) INTO month_of_max_orders
+           FROM shopperorder 
+           WHERE YEAR(date) = year
+           ORDER BY MONTH(date) DESC
+           LIMIT 1;
+           RETURN (month_of_max_orders);
+       END $$
+       
+DELIMITER ;
 
-delimiter $$
-create function max_order_month(year_num INT)
-returns varchar(20)
-begin 
-    Declare month_order varchar(20);
-    select MONTHNAME(shopperorder.date) from shopperorder
-    where year(date)='2019'
-    group by month(date)
-    having count(*) >= 
-    (SELECT COUNT(*) FROM shopperorder
-   WHERE YEAR(shopperorder.date) = '2019'
-   GROUP BY MONTHNAME(shopperorder.date));
-    return month_order;
-end $$
-
-delimiter ;
-
-SELECT MONTHNAME(t.date),MAX(count1) FROM 
-   (
-   SELECT MONTHNAME(o.date) ,COUNT(*) as count1 FROM shopperorder as o
-   WHERE YEAR(o.date) = '2019'
-   GROUP BY MONTH(o.date)
-   ) as t;
-   
-SELECT * FROM SHOPPERORDER;
-
-select max_order_month(2019);
+select Max_Order_Month(2019);
