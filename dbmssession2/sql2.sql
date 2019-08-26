@@ -74,6 +74,14 @@ INSERT INTO products(product_name,product_price,product_images,product_desc,prod
 VALUES ("watches",200,"png","electronic watches",200,3,"2019-05-17","active");
 INSERT INTO products(product_name,product_price,product_images,product_desc,product_qty,category_id,date,status)
 VALUES ("dress",500,NULL,"women dress",49,7,"2018-11-29","active");
+-- inserting images of products
+insert into product_images (product_id, product_image) values (1,"imgABC.png");
+insert into product_images (product_id, product_image) values (2,"imgC12.jpeg");
+insert into product_images (product_id, product_image) values (1,"img.png");
+insert into product_images (product_id, product_image) values (1,"imgABC.png");
+insert into product_images (product_id, product_image) values (4,"imgrty123.jpeg");
+insert into product_images (product_id, product_image) values (6,"unh.png");
+insert into product_images (product_id, product_image) values (3,"a123.png");
 
 
 -- inserting data in cart_list table
@@ -103,13 +111,13 @@ INSERT INTO cart_List(cart_id,user_id,product_id,shipping_address,product_qty)
 VALUES (9,1,2,"def 123",1);
 INSERT INTO cart_List(cart_id,user_id,product_id,shipping_address,product_qty) 
 VALUES (10,6,3,"jklm",1);
- 
+
 -- inserting data in shopperorder table
 INSERT INTO shopperorder(date,cart_id,status) VALUES ("2019-02-22",1,"shipped");
 INSERT INTO shopperorder(date,cart_id,status) VALUES ("2019-08-13",2,"not shipped");
 INSERT INTO shopperorder(date,cart_id,status) VALUES ("2019-08-15",3,"shipped");
 INSERT INTO shopperorder(date,cart_id,status) VALUES ("2019-02-22",4,"shipped");
-INSERT INTO shopperorder(date,cart_id,status) VALUES ("2017-02-22",5,"not shipped");
+INSERT INTO shopperorder(date,cart_id,status) VALUES ("2017-02-22",5,"cancelled");
 INSERT INTO shopperorder(date,cart_id,status) VALUES ("2019-06-22",6,"not shipped");
 INSERT INTO shopperorder(date,cart_id,status) VALUES ("2019-06-29",12,"shipped");
 INSERT INTO shopperorder(date,cart_id,status) VALUES ("2019-02-22",8,"delivered");

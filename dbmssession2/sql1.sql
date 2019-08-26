@@ -4,14 +4,14 @@ USE storeFront;
 
 -- 1.a  Create all tables of eCommerce Application: StoreFront covered in Session 1 Assignments
 
-CREATE TABLE roles (
+CREATE TABLE roles(
     role_id INT(5) PRIMARY KEY,
     role_desc VARCHAR(100),
     role_name VARCHAR(20)
 );
 
 
-CREATE TABLE User (
+CREATE TABLE User(
     user_id INT(5) PRIMARY KEY,
     user_name VARCHAR(20) NOT NULL,
     user_mobile INT(10),
@@ -23,7 +23,7 @@ CREATE TABLE User (
 );
 
 
-CREATE TABLE login (
+CREATE TABLE login(
     login_id INT(5) PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(20),
     password VARCHAR(25),
@@ -33,16 +33,16 @@ CREATE TABLE login (
 );
 
 
-CREATE TABLE category (
+CREATE TABLE category(
     category_id INT(5) PRIMARY KEY,
     category_type VARCHAR(20),
     category_name VARCHAR(20),
     category_parent INT(5) DEFAULT NULL
 );
 
-CREATE TABLE products (
+CREATE TABLE products(
     product_id INT(5) PRIMARY KEY AUTO_INCREMENT,
-    product_price FLOAT(5 , 2 ),
+    product_price FLOAT(5, 2 ),
     product_name VARCHAR(20),
     product_images VARCHAR(50),
     product_desc VARCHAR(100),
@@ -54,14 +54,22 @@ CREATE TABLE products (
         REFERENCES category (category_id)
 );
 
+CREATE TABLE product_images(
+    image_id INT(5) PRIMARY KEY AUTO_INCREMENT,
+    product_id INT(5),
+    product_image VARCHAR(100),
+    FOREIGN KEY (product_id)
+        REFERENCES products (product_id)
+);
 
-CREATE TABLE cart_list (
+
+CREATE TABLE cart_list(
     cart_id INT(5),
     user_id INT(5),
     product_id INT(5),
     shipping_address VARCHAR(100),
     product_qty INT(5),
-    PRIMARY KEY (cart_id , product_id , user_id),
+    PRIMARY KEY (cart_id,product_id,user_id),
     FOREIGN KEY (product_id)
         REFERENCES products (product_id),
     FOREIGN KEY (user_id)
@@ -69,12 +77,12 @@ CREATE TABLE cart_list (
 );
 
 
-CREATE TABLE ShopperOrder (
+CREATE TABLE ShopperOrder(
     order_id INT(5) AUTO_INCREMENT,
     date DATE,
     cart_id INT(5),
     Status VARCHAR(20),
-    PRIMARY KEY (order_id , cart_id),
+    PRIMARY KEY (order_id,cart_id),
     FOREIGN KEY (cart_id)
         REFERENCES cart_list (cart_id)
 );
@@ -88,9 +96,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE products ;
 
 -- 1.d  Create the Product table again. 
-CREATE TABLE products (
+CREATE TABLE products(
     product_id INT(5) PRIMARY KEY AUTO_INCREMENT,
-    product_price FLOAT(5 , 2 ),
+    product_price FLOAT(5, 2 ),
     product_name VARCHAR(20),
     product_images VARCHAR(50),
     product_desc VARCHAR(100),
