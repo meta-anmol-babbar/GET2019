@@ -68,26 +68,27 @@ public class StoreFront {
 	 * 
 	 * This method inserts the images of the given product
 	 * @param productIds is the product ids
-	 * @param imageURLs is the urls of the image
+	 * @param imgList is the urls of the image
 	 * @return {int} length of the resultant table
 	 * @throws SQLException
 	 
+	*/
 	
-	int insertImagesOfProduct(int[] productIds, String[] imageURLs) throws SQLException
+	int insertImagesOfProduct(int productIds, List<String> imgList) throws SQLException
 	{
-		if (productIds == null || imageURLs == null) {
+		if (Integer.toString(productIds) == null || imgList == null) {
 			System.out.println("Id or Images Can't be Null");
 			return -1;
 		}
 		
-		String query ="INSERT INTO images(product_id, image_url) VALUES(?,?);";
+		String query ="INSERT INTO product_images(product_id, product_image) VALUES(?,?);";
 		try
 		{
 			PreparedStatement statement = (PreparedStatement) con.prepareStatement(query);
 			con.setAutoCommit(false);
-			for (int i = 0; i < productIds.length; i++) {
-				statement.setInt(1, productIds[i]);
-				statement.setString(2, imageURLs[i]);
+			for (int i = 0; i < imgList.size(); i++) {
+				statement.setInt(1, productIds);
+				statement.setString(2, imgList.get(i));
 				statement.addBatch();
 			}
 			int[] result = statement.executeBatch();
@@ -101,8 +102,7 @@ public class StoreFront {
 		}
 		return -1;
 	}
-	*/
-	
+		
 	/**
 	 * Assignment 3:
 	 * This method executes the query which deletes the products that are not Ordered in Last One Year

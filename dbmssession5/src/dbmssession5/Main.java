@@ -1,11 +1,19 @@
 package dbmssession5;
 
+import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, NumberFormatException, IOException {
+		Scanner sc=new Scanner(System.in);
+		BufferedReader bfr=new BufferedReader(new InputStreamReader(System.in));
 		StoreFront sf = new StoreFront();
 		// query 1
 		
@@ -23,6 +31,28 @@ public class Main {
 		System.out.println();
 		//query 2
 		System.out.println("query 2");
+		String subChoice="n";
+		do{
+		List<String> imgList=new ArrayList<String>();
+		System.out.println("\nEnter product id to add images : ");
+		int pId = Integer.parseInt(bfr.readLine());
+		System.out.println("Enter number of images to enter");
+		int numImages=Integer.parseInt(bfr.readLine());
+		while(numImages>0){
+			System.out.println("enter image url");
+			String imgUrl=bfr.readLine();
+			imgList.add(imgUrl);
+			numImages--;
+		}
+		//inserting images
+		try {
+			sf.insertImagesOfProduct(pId,imgList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("enter y to continue ");
+		subChoice=bfr.readLine();
+		}while(subChoice.equalsIgnoreCase("y"));
 		
 		//query 3
 		System.out.println("query 3");
