@@ -150,16 +150,15 @@ WHERE
 -- sorted by Parent Category Title and then Category Title. 
 
 SELECT 
-    c1.category_id, c1.category_name, c1.category_parent
+    c1.category_id, c1.category_name, c3.category_name as parent
 FROM
-    category AS c1
-WHERE
-    c1.category_id NOT IN (SELECT 
-            c2.category_id
+    category AS c1 left join (SELECT 
+            c2.category_id,category_name
         FROM
             category AS c2
         WHERE
-            c2.category_parent IS NOT NULL);
+            c2.category_parent IS NULL) as c3 on c1.category_parent=c3.category_id where c3.category_name is not null
+order by c3.category_name,c1.category_name;
 
 
 -- 2.f Display Product Title, Price & Description which falls into particular category Title (i.e. “Mobile”)
