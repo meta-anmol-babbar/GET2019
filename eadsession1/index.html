@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Metacube Parking</title>
+    <style>
+        td,th{
+            padding: 20px; 
+        }
+    </style>
+    <script type="text/javascript" src="EmployeeValidation.js"></script>  
+    <script type="text/javascript" src="vehicleValidation.js"></script> 
+    <script type="text/javascript" src="Showpricing.js"></script>  
+</head>
+<body>
+    <h1 align=center> Metacube Parking System</h1>   
+    <div id="empForm" style="display: block;">
+        <form>
+            <table align="center">
+                <tr>
+                    <th colspan="2">Employee Details</th>
+                </tr>
+                <tr>
+                    <td>Name </td>
+                    <td> <input type="text" placeholder="Enter Name" id="name" > </td>
+                </tr>
+                <tr> 
+                    <td>Gender</td>
+                    <td><input type="radio" name="Gender" id="male" checked>Male <br>
+                    <input type="radio" name="Gender" id="female">Female </td>
+                </tr>
+                <tr>
+                    <td>Email Id </td>
+                    <td> <input type="text" placeholder="Enter Email" id="email"> </td>
+                </tr>
+                <tr>
+                    <td>Password </td>
+                    <td> <input type="password" placeholder="Enter Password" id="password"> </td>
+                </tr>    
+                <tr>
+                    <td>Confirm Password </td>
+                    <td> <input type="password" placeholder="Enter Password" id="confirmpassword"> </td>
+                </tr> 
+                <tr>
+                    <td>Contact Number </td>
+                    <td> <input type="text" placeholder="Enter Contact Number" id="contact" > </td>
+                </tr>   
+                <tr >
+                    <td colspan="2" align="center"> <button type="button" title="Submit" id="Submit"
+                       onclick="EmplyeeForm()"> Submit</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>   
+    
+    <div id="vehicleForm" style="display: block;">
+            <form id="v">
+                <table align="center">
+                    <tr>
+                        <th colspan="2"> Vehcile Details </th>
+                    </tr>
+                    <tr>
+                        <td>Vehcile Name </td>
+                        <td> <input type="text" placeholder="Enter Vehcile Name" id="vname"> </td>
+                    </tr>
+                    <tr> 
+                        <td>Vehcile Type</td>
+                        <td><input type="radio" name="vtype" id="cycle" value="cycle" checked>cycle <br>
+                        <input type="radio" name="vtype" id="motorcycle" value="motorcycle">motocycle<br>
+                        <input type="radio" name="vtype" id="4wheeler" value="4wheeler">4-wheeler</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Number</td>
+                        <td> <input type="text" placeholder="Enter Vehcile Number" id="vnumber"> </td>
+                    </tr>
+                    <tr>
+                        <td>Employee Id </td>
+                        <td> <input type="text" placeholder="Employee Id" id="empId"> </td>
+                    </tr>    
+                    <tr>
+                        <td> Vehicle Identification </td>
+                        <td> <textarea placeholder="Vehicle Identification" id="videntity"> </textarea></td>
+                    </tr>   
+                    <tr >
+                        <td colspan="2" align="center"> <button type="button" id ="submit" onclick="vehicleForm()">Submit</button> </td>
+                    </tr>
+                </table>
+            </form>
+           
+        </div> 
+        <div id="cycleForm" style="display: block;" align="center">
+                <p>Get Pass</p>
+                
+                Select Currency :     
+                    <select name = "dropdown">
+                                <option value = "INR" selected>INR</option>
+                                <option value = "YEN">YEN</option>
+                                <option value = "Dollor">Dollar</option>
+                    </select><br>
+                Select Pack : 
+                <input type="radio" name="cyclepack" id="cycleDaily" value="cycleDaily" onclick="showPricingCycle()" >Daily 
+                        <input type="radio" name="cyclepack" id="cycleMonthly" value="cycleMonthly" onclick="showPricingCycle()">Monthly
+                        <input type="radio" name="cyclepack" id="cycleYearly" value="cycleYearly" onclick="showPricingCycle()">Yearly
+                <div id="cycleRateDaily" style="display: block;">
+                    
+                <label id="priceLabel"></label>
+                
+                </div>
+
+                    
+
+        </div>
+        <div id="motorcycleForm" style="display: block;">
+
+        </div>
+        <div id="4wheelerForm" style="display: block;">
+
+        </div>
+
+      
+         
+</body>
+</html>
+
+
+
