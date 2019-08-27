@@ -90,26 +90,21 @@
             </form>
            
         </div> 
-        <div id="cycleForm" style="display: block;" align="center">
+        <div id="getPass" style="display: block;" align="center">
                 <p>Get Pass</p>
                 
                 Select Currency :     
-                    <select name = "dropdown">
+                    <select id = "dropdown">
                                 <option value = "INR" selected>INR</option>
                                 <option value = "YEN">YEN</option>
                                 <option value = "Dollor">Dollar</option>
                     </select><br>
                 Select Pack : 
-                <input type="radio" name="cyclepack" id="cycleDaily" value="cycleDaily" onclick="showPricingCycle()" >Daily 
-                        <input type="radio" name="cyclepack" id="cycleMonthly" value="cycleMonthly" onclick="showPricingCycle()">Monthly
-                        <input type="radio" name="cyclepack" id="cycleYearly" value="cycleYearly" onclick="showPricingCycle()">Yearly
-                <div id="cycleRateDaily" style="display: block;">
-                    
-                <label id="priceLabel"></label>
-                
-                </div>
-
-                    
+                <input type="radio" name="pack1" id="daily" value="daily" onclick="showPricing()" >Daily 
+                        <input type="radio" name="pack1" id="monthly" value="monthly" onclick="showPricing()">Monthly
+                        <input type="radio" name="pack1" id="yearly" value="yearly" onclick="showPricing()">Yearly
+                <br>               
+                <label id="priceLabel"></label>              
 
         </div>
         <div id="motorcycleForm" style="display: block;">
