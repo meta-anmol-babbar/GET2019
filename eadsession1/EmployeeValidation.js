@@ -1,4 +1,5 @@
 function EmplyeeForm(){
+  var vehickeFormdiv=document.getElementById("vehicleForm");
   var empFromdiv = document.getElementById("empForm");
   var togbutton=document.getElementById("Submit")
   var password=document.getElementById("password").value;  
@@ -34,6 +35,7 @@ function EmplyeeForm(){
   else{
    empFromdiv.style.display = "none";
    togbutton.innerHTML= "Show Element";
+   vehickeFormdiv.style.display="block";
    alert("Congrats! \nYour account is created...! \nYour Employee Id is " + empId);
    oFormElement = oFormObject.elements["empId"].value=empId;
 
