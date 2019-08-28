@@ -21,7 +21,7 @@ function EmplyeeForm(){
   }
   else if (password.length < 8) {
     alert('Password Too Short');
-} else if (!(/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]+$/.test(password))) {
+} else if (!(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(password))) {
     alert( "Password should be at least One Upper and One Lower case and one digit");
 }
   else if(password!=confirmPassword) {
