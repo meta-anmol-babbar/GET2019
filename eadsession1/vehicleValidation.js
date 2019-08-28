@@ -1,5 +1,6 @@
 function vehicleForm(){
     var vehicleType;
+    var passdiv=document.getElementById("getPass");
     var vehicleFromdiv = document.getElementById("vehicleForm");
     var togbutton=document.getElementById("submit");
     var namereg=/^[A-Za-z][A-Za-z]+/;
@@ -20,6 +21,7 @@ function vehicleForm(){
     else{
     vehicleFromdiv.style.display = "none";
      togbutton.innerHTML= "Show Element";
+     passdiv.style.display = "block";
      return vehicleType;
     } 
 }
