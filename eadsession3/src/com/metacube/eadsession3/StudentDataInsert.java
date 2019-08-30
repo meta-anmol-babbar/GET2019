@@ -2,16 +2,13 @@ package com.metacube.eadsession3;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.ResultSet;
-import com.mysql.jdbc.Statement;
 
 
 /**
@@ -36,7 +33,6 @@ public class StudentDataInsert extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -53,34 +49,28 @@ public class StudentDataInsert extends HttpServlet {
 		fatherName = request.getParameter("fatherName");
 		studentClass = Integer.parseInt(request.getParameter("class"));
 		age  = Integer.parseInt(request.getParameter("age"));
-		
+		rs=sq.addStudentDetails(fName, lName, fatherName, studentClass, age);
 		}
 		catch(NullPointerException npe){
-			npe.printStackTrace();
+			rs=0;
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			rs=0;
 		}
-		rs=sq.addStudentDetails(fName, lName, fatherName, studentClass, age);
-		if(rs==1){
-			output="Dtata Successfully Inserted";
-		}
-		else
-			output="Please Check The Data Inserted";
 		
-
-		// do some processing here...
-
-		// get response writer
-		PrintWriter writer = response.getWriter();
-
-		// build HTML code
-		String htmlRespone = "<html>";
-		htmlRespone += "<h2>result is :" + output +" <br/>";
-		htmlRespone += "</html>";
-
-		// return response
-		writer.println(htmlRespone);
-
+		if(rs==1){
+			output="Data Successfully Inserted";
+		}
+		else{
+			output="Incorrect Data Inserted...!! Please Try Again ";
+		}
+		
+		RequestDispatcher rd = null;
+		PrintWriter out= response.getWriter();
+		
+		out.println("<p><b><font color=red>"+output+"</font></b></p><br>");
+		rd = request.getRequestDispatcher("/StudentDetails.html");
+		rd.include(request, response);
+		
 	}
 }

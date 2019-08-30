@@ -10,7 +10,8 @@ public class Student {
 	
 	public Student() {
 	}
-	public Student(String firstName,String lastName,String fatherName,int age,int studentClass) {
+	public Student(int student_id,String firstName,String lastName,String fatherName,int age,int studentClass) {
+		this.student_id=student_id;
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.fatherName=fatherName;
