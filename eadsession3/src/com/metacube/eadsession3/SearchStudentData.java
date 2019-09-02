@@ -34,64 +34,85 @@ public class SearchStudentData extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		StudentQuery sq=new StudentQuery();
-		String queryString = null ,firstName,lastName;
+		String queryString = null ,firstName="",lastName = "";
 		ResultSet resultSet =null;
+		int studentClass = 0;
 		
 		List<Student> searchList = new ArrayList<Student>();
 		PrintWriter out = response.getWriter();
 		
 		response.setContentType("text/html");
-		System.out.println(request.getParameter("lastName"));
+		try{
 		firstName = request.getParameter("firstName");
 		lastName = request.getParameter("lastName");
-		if("".equals(lastName)){
-			 searchList =sq.seacrhByFirstName(firstName);
+		studentClass=Integer.parseInt(request.getParameter("studentClass"));
 		}
-		else if(null == firstName){
-			searchList =sq.seacrhByLastName(lastName);
+		catch(NumberFormatException nfe){
+			studentClass=0;
+		}
+		catch (NullPointerException npe) {
+			firstName="";
+			lastName="";
+		}
+		catch (Exception e) {
+			firstName="";
+			lastName="";
+		}
+		if("".equals(lastName) && "".equals(firstName)){
+			System.out.println("IN SEARCH BY CLASS");
+			searchList = sq.seacrhByClass(studentClass);
+		}
+		else if("".equals(firstName)  ){
+			searchList =sq.seacrhByLastName(lastName,studentClass);
+		}
+		else if("".equals(lastName)){
+			System.out.println("IN SEARCH BY F");
+			 searchList =sq.seacrhByFirstName(firstName,studentClass);
 		}
 		else{
-			searchList =sq.seacrhByFirstAndLastName(firstName, lastName);
+			searchList =sq.seacrhByFirstAndLastName(firstName, lastName,studentClass);
 		}
+		
 		try {
 		
 			// build HTML code
-						String htmlRespone = "<html>";
-						htmlRespone += "<head>";
-						htmlRespone += "<style>"
-								+ "table{ table-layout: fixed;"
-								+ "  width: 1000px;}"
-								+ "td,th{ "
-								+ "padding: 10px;}"
-								+ "</style>";
-						htmlRespone += "</head>";
-						htmlRespone += "<body> "
-								+ "<div><table border=1px> <tr>"
-								+ "<td> Student Id </td>"
-								+ "<td> First Name </td>"
-								+ "<td> Last Name</td>"
-								+ "<td> Father's Name </td>"
-								+ "<td> Class </td>"
-								+ "<td> Age </td>"
-								+ "<td> Option </td>"
-								+ "</div>";
-						
-						for(Student student : searchList){
-							htmlRespone += "<div>"
-								+ "<form action=UpdateServlet method='get'>"
-								+ "<table border=1px> <tr> "
-								+ "<input id=Id name=studentId value= '"+ student.getStudent_id() +"'>"
-								+ "<input id=firstName name=firstName value='"+ student.getFirstName() +"'>"
-								+ "<input id=lastName name=lastName value= '"+ student.getLastName() +"'>"
-								+ "<input id=fatherName name=fatherName value= '"+ student.getFatherName()+"'>"
-								+ "<input id=studentClass name=studentClass value= "+ student.getStudentClass() +">"
-								+ "<input id=studentAge name=studentAge value= "+ student.getAge() +">"
-								+ "<input type= submit value = Update id='"+student.getStudent_id()+"' name='"+student.getFirstName()+"'>"
+			String htmlRespone = "<html>";
+			htmlRespone += "<head>";
+			htmlRespone += "</head>";
+			htmlRespone += "<body> "
+					+ "<table border=1px> <tr>"
+					+ "<td> Student Id </td>"
+					+ "<td> First Name </td>"
+					+ "<td> Last Name</td>"
+					+ "<td> Father's Name </td>"
+					+ "<td> Age </td>"
+					+ "<td> Class </td>"
+					+ "</tr>"
+					+ "";
+					
+		       
+
+    
+						for(Student student :searchList){
+							htmlRespone += ""
+								+"<td><input type=text id=Id name=studentId value= '"+ student.getStudent_id() +"' readonly></td>"
+								+ "<td><input type=text id=firstName name=firstName value='"+ student.getFirstName() +"' readonly></td>"
+								+ "<td><input type=text id=lastName name=lastName value= '"+ student.getLastName() +"' readonly></td>"
+								+ "<td><input type=text id=fatherName name=fatherName value= '"+ student.getFatherName()+"' readonly></td>"
+								+ "<td><input type=text id=studentClass name=studentClass value= "+ student.getStudentClass() +" readonly></td>"
+								+ "<td><input type=text id=studentAge name=studentAge value= "+ student.getAge() +" readonly></td>"
 								+ "</tr>"
-								+ "</div></form>";
+								+ "</form>";
 						}
-						htmlRespone += "</body>";
-						htmlRespone += "</html>";
+						
+						htmlRespone += "</table>";
+						htmlRespone+="<form form action=index.html>"
+										+ "<input type=submit value=Home>"
+										+ "</form>";
+								
+						htmlRespone += "</body>"
+								+ "</html>";
+
 
 					// return response
 					out.println(htmlRespone);

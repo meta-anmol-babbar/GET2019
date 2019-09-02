@@ -110,9 +110,9 @@ public class UpdateServlet extends HttpServlet {
 		fatherName = request.getParameter("fatherName");
 		studentClass = Integer.parseInt(request.getParameter("studentClass"));
 		age  = Integer.parseInt(request.getParameter("studentAge"));
-		rs=sq.UpdateStudentDetails(studentId, fName, lName, fatherName, studentClass, age);
+		rs=sq.UpdateStudentDetails(studentId, fName, lName, fatherName, age, studentClass);
 		if(rs==1){
-			out.println("<p><b><font color=blue>"+"Data Success fully Inserted"+"</font></b></p><br>");
+			out.println("<p><b><font color=blue>"+"Data Success fully Updated"+"</font></b></p><br>");
 			response.sendRedirect("ShowStudentData");
 			
 		}

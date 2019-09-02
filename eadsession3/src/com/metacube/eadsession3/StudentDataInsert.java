@@ -49,7 +49,7 @@ public class StudentDataInsert extends HttpServlet {
 		fatherName = request.getParameter("fatherName");
 		studentClass = Integer.parseInt(request.getParameter("class"));
 		age  = Integer.parseInt(request.getParameter("age"));
-		rs=sq.addStudentDetails(fName, lName, fatherName, studentClass, age);
+		rs=sq.addStudentDetails(fName, lName, fatherName, age,studentClass);
 		}
 		catch(NullPointerException npe){
 			rs=0;
@@ -69,7 +69,7 @@ public class StudentDataInsert extends HttpServlet {
 		PrintWriter out= response.getWriter();
 		
 		out.println("<p><b><font color=red>"+output+"</font></b></p><br>");
-		rd = request.getRequestDispatcher("/StudentDetails.html");
+		rd = request.getRequestDispatcher("index.html");
 		rd.include(request, response);
 		
 	}
