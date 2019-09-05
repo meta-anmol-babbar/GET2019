@@ -1,5 +1,10 @@
 package com.metacube.eadsession3;
 
+/**
+ * Student is a POJO class
+ *
+ */
+		
 public class Student {
 	private int student_id;
 	private String firstName;

@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
-
 public class DbConnectivity {
 	private Connection conn;
 	private Statement stm;

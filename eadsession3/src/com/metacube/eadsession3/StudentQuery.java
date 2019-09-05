@@ -9,13 +9,18 @@ import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 
 
-
+/**
+ * StudentQuery class contains all the queries for performing different operations 
+ *
+ */
 public class StudentQuery {
 	protected DbConnectivity mysqlconn;
 	protected Connection con;
 	protected Statement stmt;
 	
-	
+	/**
+	 * This constructor establishes the connection with database 
+	 */
 	
 	public StudentQuery() {
 		try {
@@ -26,7 +31,15 @@ public class StudentQuery {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * query for adding student details
+	 * @param fName student First Name
+	 * @param lName student Last Name
+	 * @param fatherName student Father's Name
+	 * @param age student Age
+	 * @param studentClass student class 
+	 * @return int result
+	 */
 	public int addStudentDetails(String fName,String lName,String fatherName,int age,int studentClass){
 		int rs = 0;
 		String query="insert into studentDetails (FirstName,LastName,FatherName,Age,Class) "
@@ -40,7 +53,10 @@ public class StudentQuery {
 		}
 		return rs;
 	}
-	
+	/**
+	 * this query gets all the students data 
+	 * @return List of students
+	 */
 	public List<Student> getAllStudents(){
 		ResultSet rs;
 		List<Student> studentList = new ArrayList<Student>();
@@ -60,6 +76,17 @@ public class StudentQuery {
 		return studentList;
 		
 	}
+	
+	/**
+	 * This query is used to update the details of the students
+	 * @param id is Student's id
+	 * @param fName is Student's First Name
+	 * @param lName is Student's Last Name
+	 * @param fatherName is Student's Father's Name
+	 * @param age is Student's Age
+	 * @param studentClass is Student's Class
+	 * @return
+	 */
 	public int UpdateStudentDetails(int id,String fName,String lName,String fatherName,int age,int studentClass){
 		int rs = 0;
 		String query="update studentDetails set FirstName='"+fName+"', LastName = '"+lName+"' , FatherName = '"+fatherName+"', Class = "+studentClass+", Age = "+age+""
@@ -74,6 +101,12 @@ public class StudentQuery {
 		}
 		return rs;
 	}
+	/**
+	 * This query search students by their first name and class if entered
+	 * @param firstName
+	 * @param studentClass
+	 * @return list of students
+	 */
 
 	public List<Student> seacrhByFirstName(String firstName,int studentClass) {
 		ResultSet rs;
@@ -101,6 +134,13 @@ public class StudentQuery {
 		return studentList;
 		
 	}
+	
+	/**
+	 * This query search students by their last name and class if entered
+	 * @param firstName
+	 * @param studentClass
+	 * @return list of students
+	 */
 	public List<Student> seacrhByLastName(String LastName,int studentClass) {
 		ResultSet rs;
 		String query = null;
@@ -127,6 +167,12 @@ public class StudentQuery {
 		return studentList;
 		
 	}
+	/**
+	 * This query search students by their first name and last name and  class if entered
+	 * @param firstName
+	 * @param studentClass
+	 * @return list of students
+	 */
 	public List<Student> seacrhByFirstAndLastName(String firstName,String lastName,int studentClass) {
 		ResultSet rs;
 		String query=null;
@@ -153,7 +199,12 @@ public class StudentQuery {
 		return studentList;
 		
 	}
-
+	/**
+	 * This query search students by their class 
+	 * @param firstName
+	 * @param studentClass
+	 * @return list of students
+	 */
 	public List<Student> seacrhByClass(int studentClass) {
 		ResultSet rs;
 		String query=null;
