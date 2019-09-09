@@ -23,6 +23,14 @@ public class CartDao {
 	// Constructor.
 	public CartDao() {
 		connection = SQLConnectionDao.getConnection();
+		try {
+			Statement st = connection.createStatement();
+			String query = " truncate table cart;";
+			st.executeQuery(query);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -61,7 +69,7 @@ public class CartDao {
 	public String addProductToCart(int productCode, int quantity) {
 		try {
 			Statement st = connection.createStatement();
-			String querySelect = " SELECT p_price " + "FROM products "
+			String querySelect = " SELECT p_price FROM products "
 					+ "WHERE p_code=" + productCode + ";";
 			ResultSet rs = st.executeQuery(querySelect);
 			rs.next();

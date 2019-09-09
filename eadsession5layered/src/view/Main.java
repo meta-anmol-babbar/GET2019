@@ -50,9 +50,9 @@ public class Main {
 			}
 
 			case 3:
-				String updateMenu = "\n\nEnter option to update cart\n"
+					System.out.println("\n\nEnter option to update cart\n"
 						+ "1. To delete a product from cart.\n"
-						+ "2. To update product quantity.\n" + "Enter Input : ";
+						+ "2. To update product quantity.\n" + "Enter Input : ");
 				int updateOption = sc.nextInt();
 				switch (updateOption) {
 				case 1: {
