@@ -7,4 +7,4 @@ spring:
    suffix: .jsp
 
 home:
- notice : We are on Home Page for Students
+ notice : Welcome...!!! Please Select an Option

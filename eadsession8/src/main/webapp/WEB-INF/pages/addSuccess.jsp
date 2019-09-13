@@ -5,6 +5,22 @@
 <head>
 <title>Add Student Success</title>
 </head>
-<body>Student has been added successfully.
+<body>
+
+<div align="center">
+		<b>Student has been added successfully.</b>
+
+		<form>
+			<table>
+				<tr>
+					<td><a href="/studentDetails">Enter Student Details</a></td>
+				</tr>
+				<tr>
+					<td><a href="/showStudents">Show Student Details</a></td>
+				</tr>
+			</table>
+
+		</form>
+	</div>
 </body>
 </html>

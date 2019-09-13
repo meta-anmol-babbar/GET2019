@@ -55,6 +55,19 @@ td, th {
 		</table>
 
 	</div>
-</body>
+	<div align="center">
+
+		<form>
+			<table>
+				<tr>
+					<td><a href="/studentDetails">Enter Student Details</a></td>
+				</tr>
+				<tr>
+					<td><a href="/home">Home</a></td>
+				</tr>
+			</table>
+
+		</form>
+	</div></body>
 
 </html>

@@ -21,7 +21,7 @@ import com.metacube.eadsession8.model.Students;
 
 @Controller
 public class studentController {
-
+	List<Students> listOfStudents = new ArrayList<>();
 	// Validation code start
 	boolean error = false;
 
@@ -50,7 +50,7 @@ public class studentController {
 		if (result.hasErrors()) {
 			return "studentDetails";
 		} else {
-			
+			addStudents(student);
 			return "redirect:/success";
 		}
 	}
@@ -68,18 +68,21 @@ public class studentController {
 		return "showStudents";
 	}
 
+	private void addStudents(Students student) {
+		listOfStudents.add(student);
+	}
+
 	private List<Students> getStudentsList() {
-		List<Students> listOfStudents = new ArrayList<>();
-		listOfStudents.add(new Students("Aman", "Gautam", "Mr Kumar",
-				"aman@gmail.com", 12, 18));
-		listOfStudents.add(new Students("Anmol", "Babbar", "Mr Babbar",
-				"babbarShera@gmail.com", 10, 15));
-		listOfStudents.add(new Students("Jugal", "Kukreja", "Mr Kukreja",
-				"jugal123@gmail.com", 7, 12));
-		listOfStudents.add(new Students("Mahendar", "Saran", "Mr Saran",
-				"mahindar123@gmail.com", 8, 13));
-		listOfStudents.add(new Students("Ajay", "Shringi", "Mr Shringi",
-				"ajay1234@gmail.com", 11, 16));
+//		listOfStudents.add(new Students("Aman", "Gautam", "Mr Kumar",
+//				"aman@gmail.com", 12, 18));
+//		listOfStudents.add(new Students("Anmol", "Babbar", "Mr Babbar",
+//				"babbarShera@gmail.com", 10, 15));
+//		listOfStudents.add(new Students("Jugal", "Kukreja", "Mr Kukreja",
+//				"jugal123@gmail.com", 7, 12));
+//		listOfStudents.add(new Students("Mahendar", "Saran", "Mr Saran",
+//				"mahindar123@gmail.com", 8, 13));
+//		listOfStudents.add(new Students("Ajay", "Shringi", "Mr Shringi",
+//				"ajay1234@gmail.com", 11, 16));
 		return listOfStudents;
 	}
 
