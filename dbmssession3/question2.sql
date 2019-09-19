@@ -2,7 +2,7 @@ USE storefront;
 
 -- Q2.1 Display the list of products (Id, Title, Count of Categories) which fall in more than one Categories
 SELECT 
-    product_name, COUNT(products.category_id) AS count
+    product_id, product_name, COUNT(products.category_id) AS count
 FROM
     products
         INNER JOIN

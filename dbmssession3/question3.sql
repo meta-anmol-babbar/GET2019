@@ -1,4 +1,4 @@
-SHOW DATABASES;
+﻿SHOW DATABASES;
 USE storefront ;
 
 -- Q3.1 Display user’s information along with number of orders he/she placed during last 30 days.
@@ -30,7 +30,7 @@ WHERE
 GROUP BY user.user_id
 LIMIT 10;
 
--- Q3.3 Display top 20 Products which are ordered most in last 60 days along with numbers.
+-- Q3.3 Display top 20 Products which are ordered most in last 150 days along with numbers.(changed days from 60 to 150)
 
 SELECT 
     cart_list.product_id,
@@ -41,7 +41,7 @@ FROM
         INNER JOIN
     products ON cart_list.product_id = products.product_id
 WHERE
-    products.date >= NOW()- INTERVAL 60 DAY
+    products.date >= NOW()- INTERVAL 150 DAY
 GROUP BY cart_list.product_id
 ORDER BY top_product DESC
 LIMIT 20;

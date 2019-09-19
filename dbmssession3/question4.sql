@@ -65,8 +65,9 @@ VALUES  ("313002", 1),
 SELECT 
     z.zipcode_id, c.city_name, s.state_name
 FROM
-    zipcode z,
-    city c,
     state s
-WHERE
-    z.zipcode_id = 313002 AND z.city_id = c.city_id AND c.city_id = s.state_id;
+        INNER JOIN
+    city c ON s.state_id = c.state_id
+        INNER JOIN
+    zipcode z ON c.city_id = z.city_id
+ORDER BY s.state_name,c.city_name;
