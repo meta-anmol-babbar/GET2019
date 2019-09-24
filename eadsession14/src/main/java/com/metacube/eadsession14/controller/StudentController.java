@@ -28,9 +28,6 @@ public class StudentController {
 	StudentRepository repository;
 	List<Student> students;
 
-	@Value("${message}")
-	String msg;
-
 	/**
 	 * redirects to home page
 	 * 
@@ -40,7 +37,6 @@ public class StudentController {
 	@GetMapping("/index")
 	public String homeRedirect(Model model,
 			@RequestParam(value = "denied", required = false) String warn) {
-		model.addAttribute("msg", msg);
 		if (warn != null) {
 			model.addAttribute("denied",
 					"you are not authorized to access this page");

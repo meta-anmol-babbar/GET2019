@@ -47,8 +47,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/studentForm")
-				.hasRole("ADMIN").antMatchers("/showStudents")
-				.hasAnyRole("USER", "ADMIN").antMatchers("/login").permitAll()
+				.hasAuthority("ADMIN").antMatchers("/showStudents")
+				.hasAnyAuthority("USER", "ADMIN").antMatchers("/login").permitAll()
 				.anyRequest().authenticated().and().formLogin()
 				.loginPage("/login").loginProcessingUrl("/perform_login")
 				.defaultSuccessUrl("/index?logged=1", true)
