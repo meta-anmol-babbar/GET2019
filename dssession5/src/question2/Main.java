@@ -30,7 +30,13 @@ public class Main {
 						System.out.println("Employee " + name
 								+ " added in the list\n");
 						System.out.println("Do you want to enter more [y/n]");
-						moreInput = sc.next();
+						try {
+							moreInput = sc.next();
+						} catch (InputMismatchException ime) {
+							System.out
+									.println("\nPlease Enter only correct data Value \n");
+							sc.nextLine();
+						}
 					} while (moreInput.equals("y"));
 					break;
 				case 2:
@@ -55,11 +61,9 @@ public class Main {
 				}
 				sc.nextLine();
 			} catch (InputMismatchException exception) {
-				System.out.println("\nPlease Enter only correct data Value \n");
-				sc.nextLine();
+				System.out.println("\nPlease Enter only correct data Value here \n");
 			}
-		} while (choice != 0);
-		sc.close();
+		} while (true);
 	}
 
 }
