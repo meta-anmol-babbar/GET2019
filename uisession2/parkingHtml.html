@@ -6,20 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Metacube Parking</title>
     <style>
+            .body{
+                background-color: #d4d5d6;
+            }
             .headTable{
-                margin: 10px;
                 width: 100%;
+                height:15px;
+                font-size: 12px;
                 text-align: center;
-                background-color:#9499a1;
-                color:#444;
+                background-color:#14315e;
+                color:#FFFFFF;
             }
-            .empForm{
+            a {
+                color: #FFFFFF;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  
+                text-decoration: none;
+            }
+            .heading{
+                text-align: center;
+            }
+            .collapsible{
+                cursor: pointer;
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                border-radius: 10px;
+                display: block;
+                text-align: left;
+                background: #14315e;
+                
+            }
+            .form{
                 border: solid 1px;
-            }
-
-            .vehForm{
-                border: solid 1px;
-            }
+                width: 100%;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                background-color: #FFFFFF;
+                display: inline-block;
+                }
+            input{
+                border-radius: 7px;
+                outline: none;
+                border: solid 2px #14315e;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  
+                }
             .empForm,
     	    .showemp,
             .hideemp:target {
@@ -40,14 +70,18 @@
                 display: block;
             }
 
-            .collapsible{
-                cursor: pointer;
-                display: block;
-                background: #cdf;
+            .gitForm,
+    	    .showgit,
+            .hidegit:target {
+                display: none;
             }
-            
+            .hidegit:target + .showgit,
+            .hidegit:target ~ .gitForm {
+                display: block;
+            }
             td,th{
-                padding: 20px; 
+                padding: 5px; 
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;             
             }
             .circleStyle{
                 border-radius: 50%; 
@@ -55,7 +89,7 @@
                 width: 100px;
                 height: 80px;
                 text-align: center;
-                padding-top: 15%;
+                padding-top: 30px;
                 display: inline-block;
                 }
             .pricingdiv{
@@ -71,26 +105,25 @@
             }
         </style>     
 </head>
-<body>
+<body class="body">
     <table class="headTable" >
         <tr>
-            <td><a href="#empForm">Add Employee</a></td>
-            <td><a href="#vehicleForm">Add Vehicle</a> </td>
-            <td><a href="#getInTouchForm">Give Feedback</a> </td>
+            <td><a href="#empCollapse">Add Employee</a></td>
+            <td><a href="#vehCollapse">Add Vehicle</a> </td>
+            <td><a href="#gitcollapse">Give Feedback</a> </td>
             <td><a href="#showPricing">Show Pricing</a> </td>
         </tr>
     </table>
-    <div align="center">
+    <div class="heading">
         <h1>Metacube Parking System</h1>
         <img src="parking.png" width="50%"  alt="parking image">   
     </div>
     
-    <div>
-    <div class="collapsible">
-            <a id="hideempform" href="#hideempform" class="hideemp">Employee Details +</a>
-            <a id="showempform" href="#showempform" class="showemp">Employee Details -</a>
-    <div class="empForm" align="center">
-        <form>
+    <div class="collapsible" id="empCollapse">
+        <a id="hideempform" href="#hideempform" class="hideemp">Employee Details +</a>
+        <a id="showempform" href="#showempform" class="showemp">Employee Details -</a>
+    <div class="empForm">
+        <form class="form">
             <h2>Employee Details</h2>
             <table >
                 <tr>
@@ -125,13 +158,12 @@
         </form>
     </div>  
     </div>
-    </div>    
-    <div class="acollapsible">
+    <div class="collapsible" id="vehCollapse">
             <a id="hidevehform" href="#hidevehform" class="hideveh">Vehcile Details +</a>
             <a id="showvehform" href="#showvehform" class="showveh">Vehcile Details -</a>
     <div class="vehForm" id="vehicleForm" >
-            <h2>Vehcile Details</h2>
-            <form>
+            <form class="form">
+                <h2>Vehcile Details</h2>
                 <table>
                     <tr>
                         <td>Vehcile Make </td>
@@ -166,9 +198,11 @@
             </form>
     </div>
         </div>
-
-        <div id="getInTouchForm" align="center">
-                <form id="getInTouch">
+        <div class="collapsible" id="gitcollapse">
+            <a id="hidegitform" href="#hidegitform" class="hidegit">Get In Touch +</a>
+            <a id="showgitform" href="#showgitform" class="showgit">Get In Touch -</a>
+        <div class="gitForm" id="getInTouchForm" >
+                <form class="form">
                     <table >
                         <tr>
                             <th> Get In Touch</th>
@@ -191,9 +225,8 @@
                     </table>
                 </form>
                
-            </div><br>
-            <br>
-            <br> 
+            </div>
+        </div>  
         <div class="pricingdiv" id="showPricing">
             <h2>Pricing </h2>
                 <div class="pricingContainer">
@@ -205,7 +238,7 @@
                 <button type="button" id ="submit">Purchase</button><br>
                 </div>
                 
-               
+         
                 <div class="pricingContainer">
                         <h3>MotorCycle</h3>
                         <div class="circleStyle">
