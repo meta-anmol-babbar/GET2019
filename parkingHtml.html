@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Metacube Parking</title>
+    <style>
+            .body{
+                text-decoration: none;
+                background-color: #d4d5d6;
+            }
+            .headnav{
+                width: 100%;
+                font-size: 14px;
+                text-align: center;
+                justify-content: space-evenly;
+                display: flex;
+                background-color:#21457a;
+                color:#FFFFFF;
+            }
+            .navicon{
+                font-stretch: normal;
+                display: inline;
+            }
+            a {
+                color: #FFFFFF;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  
+                text-decoration: none;
+            }
+            .heading{
+                color: #21457a;
+                text-align: center;
+            }
+            .collapsible{
+                cursor: pointer;
+                padding: 10px;
+                margin-left:15px;
+                margin : 10px;
+                display: block;
+                text-align: left;
+                
+                background: #21457a;
+            }
+            .collapsible:hover{
+                background-color: #273e55
+            }
+            .form{
+                border: solid 1px;
+                width: 100%;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                background-color: #FFFFFF;
+                display: inline-block;
+                }
+            .gitForm{
+                text-align: right;
+                margin: 15px;
+                background-image: url("gitback.PNG");
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                }
+            .gitdiv{
+                margin: 30px;
+                text-align: center;
+                display: inline-block;
+            }
+            .circleStyle{
+                border-radius: 50%; 
+                border: 1px solid #000000;
+                width: 100px;
+                height: 80px;
+                text-align: center;
+                padding-top: 30px;
+                display: inline-block;
+                }
+            .priceForm{
+                width: 100%;
+                text-align: center;
+                }
+            .pricingContainer{
+                width: 200px;
+                border:1px solid black;
+                margin: 30px;
+                text-align: center;
+                display: inline-block;
+                                
+                }
+            input , textarea{
+                
+                margin: 5px;
+                border-radius: 7px;
+                outline: none;
+                border: solid 2px #14315e;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  
+                }
+            
+            .empForm,
+    	    .showemp,
+            .hideemp:target {
+                display: none;
+            }
+            .hideemp:target + .showemp,
+            .hideemp:target ~ .empForm {
+                display: block;
+            }
+            
+            .vehForm,
+    	    .showveh,
+            .hideveh:target {
+                display: none;
+            }
+            .hideveh:target + .showveh,
+            .hideveh:target ~ .vehForm {
+                display: block;
+            }
+            .gitForm,
+    	    .showgit,
+            .hidegit:target {
+                display: none;
+            }
+            .hidegit:target + .showgit,
+            .hidegit:target ~ .gitForm {
+                display: block;
+            }
+            .priceForm,
+    	    .showprice,
+            .hideprice:target {
+                display: none;
+            }
+            .hideprice:target + .showprice,
+            .hideprice:target ~ .priceForm {
+                display: block;
+            }
+            td,th{
+                padding: 5px; 
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;             
+            }
+            
+        </style>     
+</head>
+<body class="body">
+    <div class="headnav" >
+        
+            <div class="navicon"><a href="#empCollapse">Add Employee</a></div>
+            <div class="navicon"><a href="#vehCollapse">Add Vehicle</a> </div>
+            <div class="navicon"><a href="#gitcollapse">Give Feedback</a> </div>
+            <div class="navicon"><a href="#priceCollapse">Show Pricing</a> </div>
+        
+    </div>
+    <div class="heading">
+        <h1>Metacube Parking System</h1>
+        <img src="parking.png" width="50%"  alt="parking image">   
+    </div>
+    
+    <div class="collapsible" id="empCollapse">
+        <a id="hideempform" href="#hideempform" class="hideemp">Employee Details +</a>
+        <a id="showempform" href="#showempform" class="showemp">Employee Details -</a>
+    <div class="empForm">
+        <form class="form" action="#">
+            <h2>Employee Details</h2>
+            <table >
+                <tr>
+                    <td>Name </td>
+                    <td> <input type="text" placeholder="Enter Name" id="name" required  > </td>
+                </tr>
+                <tr> 
+                    <td>Gender</td>
+                    <td><input type="radio" name="Gender" id="male" checked>Male <br>
+                    <input type="radio" name="Gender" id="female">Female </td>
+                </tr>
+                <tr>
+                    <td>Email Id </td>
+                    <td> <input type="email" placeholder="Enter Email" id="email" required> </td>
+                </tr>
+                <tr>
+                    <td>Password </td>
+                    <td> <input type="password" placeholder="Enter Password" id="password" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*"> </td>
+                </tr>    
+                <tr>
+                    <td>Confirm Password </td>
+                    <td> <input type="password" placeholder="Enter Password" id="confirmpassword" required > </td>
+                </tr> 
+                <tr>
+                    <td>Contact Number </td>
+                    <td> <input type="tel" placeholder="Enter Contact Number" id="contact" required minlength="10" maxlength="12"> </td>
+                </tr>   
+                <tr >
+                    <td colspan="2" align="center"> <input type="submit" value="Submit">  </td>
+                </tr>
+            </table>
+        </form>
+    </div>  
+    </div>
+    <div class="collapsible" id="vehCollapse">
+            <a id="hidevehform" href="#hidevehform" class="hideveh">Vehcile Details +</a>
+            <a id="showvehform" href="#showvehform" class="showveh">Vehcile Details -</a>
+    <div class="vehForm" id="vehicleForm" >
+        <div class="pricingdiv">
+        <form class="form" action="#">
+                <h2>Vehcile Details</h2>
+                <table>
+                    <tr>
+                        <td>Vehcile Make </td>
+                        <td> <input type="text" placeholder="Enter Vehcile Name" id="vname" required> </td>
+                    </tr>
+                    <tr>
+                        <td>Vehcile Model </td>
+                        <td> <input type="text" placeholder="Enter Vehcile Model" id="vmodel" required> </td>
+                    </tr>
+                    <tr> 
+                        <td>Vehcile type</td>
+                        <td><input type="radio" name="vtype" id="cycle" value="cycle" checked>cycle <br>
+                        <input type="radio" name="vtype" id="motorcycle" value="motorcycle">motocycle<br>
+                        <input type="radio" name="vtype" id="4wheeler" value="4wheeler">4-wheeler</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Number</td>
+                        <td> <input type="text" placeholder="Enter Vehcile Number" id="vnumber" required> </td>
+                    </tr>
+                    <tr>
+                        <td>Employee Id </td>
+                        <td> <input type="text" placeholder="Employee Id" id="empId" required> </td>
+                    </tr>    
+                    <tr>
+                        <td> Vehicle Identification </td>
+                        <td> <textarea placeholder="Vehicle Identification" id="videntity" required> </textarea></td>
+                    </tr>   
+                    <tr >
+                        <td colspan="2" align="center"> <input type="submit" value ="submit"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+        </div>
+        <div class="collapsible" id="gitcollapse">
+            <a id="hidegitform" href="#hidegitform" class="hidegit">Get In Touch +</a>
+            <a id="showgitform" href="#showgitform" class="showgit">Get In Touch -</a>
+            <div class="gitForm" id="getInTouchForm"> 
+            <div class="gitdiv">  
+            <form class="form" action="#">
+                    <table >
+                        <tr>
+                            <th> Get In Touch</th>
+                        </tr>
+                        <tr>
+                            <td> <input type="text" placeholder="Full Name" id="personName" size="40" required> </td>
+                        </tr>
+                        <tr>
+                            <td> <input type="email" placeholder="Email Id" id="email"  size="40" required> </td>
+                        </tr>
+                        <tr>
+                            <td> <input type="text" placeholder="Subject" id="subject"  size="40" required> </td>
+                        </tr>
+                        <tr>
+                            <td> <textarea placeholder="Message" id="message" rows="5" cols="42" required> </textarea></td>
+                        </tr>   
+                        <tr >
+                            <td align="center"> <input type="submit" value ="submit"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>  
+        </div>
+        <div class="collapsible" id="priceCollapse">
+            <a id="hidepriceform" href="#hidepriceform" class="hideprice">Pricing Details +</a>
+            <a id="showpriceform" href="#showpriceform" class="showprice">Pricing Details -</a>
+        <div class="priceForm">
+            <form class="form">
+            <h2>Pricing </h2>
+                <div class="pricingContainer">
+                <h3>Cycle</h3>
+                <div class="circleStyle">
+                        <strong>$100</strong><br>/a month
+                </div>
+                <p> $5 Daily <br> $100 Monthly <br> $500 Yearly</p>
+                <button type="button" id ="submit">Purchase</button><br>
+                </div>
+                
+                <div class="pricingContainer">
+                        <h3>MotorCycle</h3>
+                        <div class="circleStyle">
+                            <strong>$200</strong><br>/a month
+                        </div>
+                        
+                        <p> $10 Daily <br> $100 Monthly <br> $100 Yearly</p>
+                        <button type="button" id ="submit">Purchase</button><br>
+                </div>
+                
+                <div class="pricingContainer">
+                        <h3>Four Wheeler</h3>
+                        <div class="circleStyle">
+                                <strong>$500</strong><br>/a month
+                            </div>
+                        <p> $20 Daily <br> $500 Monthly <br> $3500 Yearly</p>
+                        <button type="button" id ="submit">Purchase</button><br>
+                </div>
+            </div>
+        </form>
+        </div>
+         
+</body>
+</html>
